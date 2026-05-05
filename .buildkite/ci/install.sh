@@ -14,7 +14,7 @@ source "${SCRIPT_DIR}/setup-env.sh"
 # when present. JOBS=1 is read by node-gyp's underlying make to
 # serialize native compiles, which are the actual memory peaks during
 # install.
-NPM_INSTALL_FLAGS=(--no-audit --no-fund --prefer-offline)
+NPM_INSTALL_FLAGS=(--no-audit --no-fund --prefer-offline --loglevel=http)
 
 if [[ -f package-lock.json ]]; then
   JOBS=1 npm ci "${NPM_INSTALL_FLAGS[@]}"
