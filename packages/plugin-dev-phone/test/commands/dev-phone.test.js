@@ -20,10 +20,9 @@ describe('dev-phone', () => {
       })
       .twilioCommand(DevPhoneServer, args);
 
-    testHelper(['--phone-number', '+188888888'], 404, {})
-      .it('should not allow phone numbers outside the user\'s account', ctx => {
-        expect(ctx.stderr).to.contain("not associated with your Twilio account");
-      })
+    testHelper(['--phone-number', '+188888888'], 200, { incoming_phone_numbers: [] })
+      .catch(/not associated with your Twilio account/)
+      .it('should not allow phone numbers outside the user\'s account')
 
   });
 
