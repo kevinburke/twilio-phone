@@ -11,12 +11,12 @@ source "${SCRIPT_DIR}/setup-env.sh"
 
 # `install` step ran in a separate job; node_modules may not be present here
 # if the agent doesn't share state between steps. Re-install if missing.
-NPM_INSTALL_FLAGS=(--jobs=1 --no-audit --no-fund --prefer-offline)
+NPM_INSTALL_FLAGS=(--no-audit --no-fund --prefer-offline)
 if [[ ! -d node_modules ]]; then
   if [[ -f package-lock.json ]]; then
-    npm ci "${NPM_INSTALL_FLAGS[@]}"
+    JOBS=1 npm ci "${NPM_INSTALL_FLAGS[@]}"
   else
-    npm install "${NPM_INSTALL_FLAGS[@]}"
+    JOBS=1 npm install "${NPM_INSTALL_FLAGS[@]}"
   fi
 fi
 

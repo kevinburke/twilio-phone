@@ -9,12 +9,12 @@ readonly SCRIPT_DIR
 # shellcheck source=.buildkite/ci/setup-env.sh
 source "${SCRIPT_DIR}/setup-env.sh"
 
-NPM_INSTALL_FLAGS=(--jobs=1 --no-audit --no-fund --prefer-offline)
+NPM_INSTALL_FLAGS=(--no-audit --no-fund --prefer-offline)
 if [[ ! -d node_modules ]]; then
   if [[ -f package-lock.json ]]; then
-    npm ci "${NPM_INSTALL_FLAGS[@]}"
+    JOBS=1 npm ci "${NPM_INSTALL_FLAGS[@]}"
   else
-    npm install "${NPM_INSTALL_FLAGS[@]}"
+    JOBS=1 npm install "${NPM_INSTALL_FLAGS[@]}"
   fi
 fi
 
