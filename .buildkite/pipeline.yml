@@ -1,0 +1,44 @@
+env:
+  TZ: UTC
+
+steps:
+  - label: ":npm: Install"
+    key: "install"
+    command: ".buildkite/ci/install.sh"
+    timeout_in_minutes: 15
+    agents:
+      vm: "buildkite"
+      host: "caracal"
+
+  - label: ":hammer: Build"
+    key: "build"
+    command: ".buildkite/ci/build.sh"
+    depends_on: "install"
+    timeout_in_minutes: 15
+    agents:
+      vm: "buildkite"
+      host: "caracal"
+    artifact_paths:
+      - "packages/plugin-dev-phone/dist/**/*"
+      - "packages/dev-phone-ui/dist/**/*"
+
+  - label: ":mocha: Test"
+    key: "test"
+    command: ".buildkite/ci/test.sh"
+    depends_on: "build"
+    timeout_in_minutes: 15
+    agents:
+      vm: "buildkite"
+      host: "caracal"
+    artifact_paths:
+      - "packages/plugin-dev-phone/coverage/**/*"
+
+  - label: ":mag: Audit"
+    key: "audit"
+    command: ".buildkite/ci/audit.sh"
+    depends_on: "install"
+    timeout_in_minutes: 10
+    soft_fail: true
+    agents:
+      vm: "buildkite"
+      host: "caracal"

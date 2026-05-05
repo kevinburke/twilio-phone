@@ -1,6 +1,6 @@
 const { expect, test } = require('@twilio/cli-test');
 const { Config, ConfigData } = require('@twilio/cli-core').services.config;
-const DevPhoneServer = require('../../src/commands/dev-phone');
+const DevPhoneServer = require('../../dist/commands/dev-phone');
 
 const testConfig = test
   .stdout()
