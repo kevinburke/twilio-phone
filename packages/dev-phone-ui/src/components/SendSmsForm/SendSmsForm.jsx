@@ -1,5 +1,9 @@
 import { useContext, useState, useMemo } from "react";
-import { Button, Input, Label, Box, Grid, Column } from "@twilio-paste/core";
+import { Box } from "@twilio-paste/box";
+import { Button } from "@twilio-paste/button";
+import { Column, Grid } from "@twilio-paste/grid";
+import { Input } from "@twilio-paste/input";
+import { Label } from "@twilio-paste/label";
 import { SendIcon } from '@twilio-paste/icons/esm/SendIcon';
 import { useSelector } from "react-redux";
 import { TwilioConversationsContext } from '../WebsocketManagers/ConversationsManager';

@@ -26,7 +26,6 @@ module.exports = {
             template: "./public/index.html"
         }),
         new LicensePlugin({
-          replenishDefaultLicenseTexts: true,
           licenseOverrides: {
             'precond@0.2.3': "MIT"
           }

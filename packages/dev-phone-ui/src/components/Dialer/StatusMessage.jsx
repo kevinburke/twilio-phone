@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { Box, Flex, MediaBody, MediaFigure, MediaObject, Text } from "@twilio-paste/core";
+import { Box } from "@twilio-paste/box";
+import { Flex } from "@twilio-paste/flex";
+import { MediaBody, MediaFigure, MediaObject } from "@twilio-paste/media-object";
+import { Text } from "@twilio-paste/text";
 
 function CallStatusMessage({voiceDevice, currentCallInfo}) {
     const [message, setMessage] = useState('initializing')

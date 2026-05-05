@@ -1,4 +1,9 @@
-import { Box, Column, Flex, Grid, Heading, Paragraph, Text } from '@twilio-paste/core';
+import { Box } from '@twilio-paste/box';
+import { Flex } from '@twilio-paste/flex';
+import { Column, Grid } from '@twilio-paste/grid';
+import { Heading } from '@twilio-paste/heading';
+import { Paragraph } from '@twilio-paste/paragraph';
+import { Text } from '@twilio-paste/text';
 import SuccessIllustration from '../Illustrations/SuccessIllustration';
 
 function EmptyMessageList({ devPhoneNumber }) {

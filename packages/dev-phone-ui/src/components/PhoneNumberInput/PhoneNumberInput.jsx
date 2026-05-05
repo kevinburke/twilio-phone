@@ -1,4 +1,6 @@
-import { Label, Flex, Box } from "@twilio-paste/core"
+import { Box } from "@twilio-paste/box"
+import { Flex } from "@twilio-paste/flex"
+import { Label } from "@twilio-paste/label"
 import { useDispatch, useSelector } from "react-redux"
 import { setDestinationNumber } from "../../actions"
 

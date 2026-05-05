@@ -1,4 +1,8 @@
-import { Anchor, Box, Flex, Paragraph, Text } from '@twilio-paste/core';
+import { Anchor } from '@twilio-paste/anchor';
+import { Box } from '@twilio-paste/box';
+import { Flex } from '@twilio-paste/flex';
+import { Paragraph } from '@twilio-paste/paragraph';
+import { Text } from '@twilio-paste/text';
 import { LogoTwilioIcon } from '@twilio-paste/icons/esm/LogoTwilioIcon';
 
 function Footer() {

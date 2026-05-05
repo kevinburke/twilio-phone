@@ -1,6 +1,17 @@
 import { useState, useEffect } from "react";
 
-import { Anchor, Box, Button, Heading, Label, Option, Select, Stack, Alert, Text, SkeletonLoader, Paragraph, Card } from "@twilio-paste/core";
+import { Alert } from "@twilio-paste/alert";
+import { Anchor } from "@twilio-paste/anchor";
+import { Box } from "@twilio-paste/box";
+import { Button } from "@twilio-paste/button";
+import { Card } from "@twilio-paste/card";
+import { Heading } from "@twilio-paste/heading";
+import { Label } from "@twilio-paste/label";
+import { Paragraph } from "@twilio-paste/paragraph";
+import { Option, Select } from "@twilio-paste/select";
+import { SkeletonLoader } from "@twilio-paste/skeleton-loader";
+import { Stack } from "@twilio-paste/stack";
+import { Text } from "@twilio-paste/text";
 import WelcomeDialog from "./WelcomeDialog";
 
 const hasExistingSmsConfig = (pn) => {

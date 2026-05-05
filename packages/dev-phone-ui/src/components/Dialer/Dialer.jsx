@@ -1,6 +1,11 @@
 import { useContext, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Flex, Stack, Grid, Column, Box, ScreenReaderOnly } from "@twilio-paste/core";
+import { Box } from "@twilio-paste/box";
+import { Button } from "@twilio-paste/button";
+import { Flex } from "@twilio-paste/flex";
+import { Column, Grid } from "@twilio-paste/grid";
+import { ScreenReaderOnly } from "@twilio-paste/screen-reader-only";
+import { Stack } from "@twilio-paste/stack";
 import { MicrophoneOnIcon } from "@twilio-paste/icons/cjs/MicrophoneOnIcon";
 import { MicrophoneOffIcon } from "@twilio-paste/icons/cjs/MicrophoneOffIcon";
 import { TwilioVoiceContext } from '../WebsocketManagers/VoiceManager';

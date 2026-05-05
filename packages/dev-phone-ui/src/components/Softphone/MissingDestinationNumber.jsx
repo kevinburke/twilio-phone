@@ -1,4 +1,5 @@
-import { Alert, Text } from '@twilio-paste/core';
+import { Alert } from '@twilio-paste/alert';
+import { Text } from '@twilio-paste/text';
 
 function MissingDestinationNumber() {
   return <Alert variant="neutral">

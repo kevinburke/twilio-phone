@@ -65,7 +65,7 @@ If you're including new packages in the repository, please include the relevant 
 
 When you're ready for a new deploy, do a fresh build of the `dist` folders with:
 
-`npx turbo run build`
+`npm run build`
 
 Once there's a new build, you can manage a version bump on a new version branch with:
 

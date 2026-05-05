@@ -20,11 +20,11 @@ fi
 
 # Tests require the build output (tests `require()` the compiled dist/).
 if [[ ! -d packages/plugin-dev-phone/dist ]] || [[ ! -d packages/dev-phone-ui/dist ]]; then
-  NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=2048" \
-    npm run build -- --concurrency=1
+  NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=1024" \
+    npm run build
 fi
 
-# Cap V8 heap on the mocha runner too — coverage instrumentation can
+# Cap V8 heap on the mocha runner too; coverage instrumentation can
 # push memory up unpredictably on agents with limited RAM.
-NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=2048" \
+NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=1024" \
   npm test --workspace=@twilio-labs/plugin-dev-phone

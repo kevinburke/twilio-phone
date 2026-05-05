@@ -1,4 +1,6 @@
-import { Box, Button, Column, Grid } from "@twilio-paste/core";
+import { Box } from "@twilio-paste/box";
+import { Button } from "@twilio-paste/button";
+import { Column, Grid } from "@twilio-paste/grid";
 import { ChevronLeftIcon } from '@twilio-paste/icons/esm/ChevronLeftIcon';
 import { ChevronRightIcon } from '@twilio-paste/icons/esm/ChevronRightIcon';
 import { useState, useMemo } from 'react';

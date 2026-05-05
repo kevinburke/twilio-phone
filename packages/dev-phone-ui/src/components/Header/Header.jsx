@@ -1,4 +1,8 @@
-import { Anchor, Box, Column, Grid, Flex, Text, MediaFigure, MediaBody, MediaObject, Tooltip } from "@twilio-paste/core";
+import { Box } from "@twilio-paste/box";
+import { Flex } from "@twilio-paste/flex";
+import { Column, Grid } from "@twilio-paste/grid";
+import { MediaBody, MediaFigure, MediaObject } from "@twilio-paste/media-object";
+import { Text } from "@twilio-paste/text";
 import { LogoTwilioIcon } from '@twilio-paste/icons/esm/LogoTwilioIcon';
 import { InformationIcon } from "@twilio-paste/icons/esm/InformationIcon";
 
@@ -33,11 +37,9 @@ function Header({ devPhoneName, numberInUse }) {
                         <Text as="p" color={"colorTextInverse"}>{devPhoneName ? devPhoneName : "loading"}</Text>
                         <Flex width={"100%"} hAlignContent={"center"}>
                             <Text as="p" marginRight={"space20"} color="colorTextInverse" fontWeight={"fontWeightSemibold"} variant="default">Dev Phone ID</Text>
-                            <Tooltip text="This is the ID I made to create and use Twilio services for your Dev Phone.">
-                                <Anchor href="javascript:void" variant="inverse">
-                                    <InformationIcon decorative={false} title="Show details about Dev Phone ID" display="block" />
-                                </Anchor>
-                            </Tooltip>
+                            <Box as="span" title="This is the ID I made to create and use Twilio services for your Dev Phone.">
+                                <InformationIcon decorative={false} title="Show details about Dev Phone ID" display="block" />
+                            </Box>
                         </Flex>
                     </Flex>
                 </Column>
@@ -46,11 +48,9 @@ function Header({ devPhoneName, numberInUse }) {
                         <Text as="p" color={"colorTextInverse"}> {numberInUse ? numberInUse : "N/A"}</Text>
                         <Flex width={"100%"} hAlignContent={"center"}>
                             <Text as="p" marginRight={"space20"} color="colorTextInverse" fontWeight={"fontWeightSemibold"} variant="default">Twilio Number</Text>
-                            <Tooltip text="Text or call this Twilio phone number to connect to your Dev Phone.">
-                                <Anchor href="javascript:void" variant="inverse">
-                                    <InformationIcon decorative={false} title="Show details about Twilio Phone Number" display="block" />
-                                </Anchor>
-                            </Tooltip>
+                            <Box as="span" title="Text or call this Twilio phone number to connect to your Dev Phone.">
+                                <InformationIcon decorative={false} title="Show details about Twilio Phone Number" display="block" />
+                            </Box>
                         </Flex>
                     </Flex>
                 </Column>

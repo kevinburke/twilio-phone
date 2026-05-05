@@ -8,7 +8,7 @@ import { fetchChannelData, fetchClientToken } from './actions'
 import "./index.css";
 import App from "./components/App/App";
 
-import { Theme } from "@twilio-paste/core/theme";
+import { Theme } from "@twilio-paste/theme";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

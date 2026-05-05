@@ -20,8 +20,8 @@ if [[ ! -d node_modules ]]; then
   fi
 fi
 
-# Cap V8 heap so a runaway bundler fails with "JS heap out of memory"
-# instead of swap-thrashing the agent VM. Run turbo with concurrency=1
-# so workspaces build sequentially, halving peak working set.
-NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=2048" \
-  npm run build -- --concurrency=1
+# Cap V8 heap below the 1.5 GB agent RAM limit so a runaway bundler
+# fails with "JS heap out of memory" instead of swap-thrashing the VM.
+# The root build script runs workspaces sequentially.
+NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=1024" \
+  npm run build

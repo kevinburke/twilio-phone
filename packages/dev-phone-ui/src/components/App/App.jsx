@@ -7,7 +7,9 @@ import PhoneNumberPicker from "../PhoneNumberPicker/PhoneNumberPicker";
 import DevDisclaimer from "../DevDisclaimer/DevDisclaimer";
 import Softphone from "../Softphone/Softphone"
 
-import { Box, Column, Grid, Flex } from "@twilio-paste/core";
+import { Box } from "@twilio-paste/box";
+import { Flex } from "@twilio-paste/flex";
+import { Column, Grid } from "@twilio-paste/grid";
 import Footer from "../Footer/Footer";
 
 const setupKonamiCode = (setNinetiesMode) => {

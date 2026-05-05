@@ -1,4 +1,7 @@
-import { Alert, Text, Button, Flex } from '@twilio-paste/core';
+import { Alert } from '@twilio-paste/alert';
+import { Button } from '@twilio-paste/button';
+import { Flex } from '@twilio-paste/flex';
+import { Text } from '@twilio-paste/text';
 import { useState } from 'react';
 
 const LOCAL_STORAGE_KEY = 'HIDE_DEV_PHONE_WARNING';

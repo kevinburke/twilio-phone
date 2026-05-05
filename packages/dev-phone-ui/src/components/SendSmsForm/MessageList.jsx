@@ -1,9 +1,10 @@
+import { Avatar } from "@twilio-paste/avatar"
+import { Box } from "@twilio-paste/box"
 import {
-    Box, Flex, SkeletonLoader, 
-    Text, ChatLog, ChatMessage,
-    ChatBubble, ChatMessageMeta, ChatMessageMetaItem, 
-    Avatar
-} from "@twilio-paste/core"
+    ChatBubble, ChatLog, ChatMessage,
+    ChatMessageMeta, ChatMessageMetaItem,
+} from "@twilio-paste/chat-log"
+import { SkeletonLoader } from "@twilio-paste/skeleton-loader"
 import { UserIcon } from '@twilio-paste/icons/esm/UserIcon';
 import { useSelector } from "react-redux"
 import EmptyMessageList from "./EmptyMessageList";

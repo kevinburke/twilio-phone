@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "turbo run build"
+    "build": "npm run build --workspace=@twilio-labs/dev-phone-ui && npm run build --workspace=@twilio-labs/plugin-dev-phone"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,6 @@
     "packages/dev-phone-ui"
   ],
   "devDependencies": {
-    "@changesets/cli": "^2.23.0",
-    "turbo": "^1.2.16"
+    "@changesets/cli": "^2.23.0"
   }
 }

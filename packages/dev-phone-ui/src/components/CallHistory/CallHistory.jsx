@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { SyncClient } from 'twilio-sync';
-import { Box, Flex, Text } from "@twilio-paste/core";
+import { Box } from "@twilio-paste/box";
+import { Flex } from "@twilio-paste/flex";
+import { Text } from "@twilio-paste/text";
 import { addCallRecord, updateCallRecord } from '../../actions'
 import { useSelector, useDispatch } from "react-redux";
 import CallRecord from "./CallRecord";
