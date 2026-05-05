@@ -11,12 +11,17 @@ source "${SCRIPT_DIR}/setup-env.sh"
 
 # `install` step ran in a separate job; node_modules may not be present here
 # if the agent doesn't share state between steps. Re-install if missing.
+NPM_INSTALL_FLAGS=(--jobs=1 --no-audit --no-fund --prefer-offline)
 if [[ ! -d node_modules ]]; then
   if [[ -f package-lock.json ]]; then
-    npm ci
+    npm ci "${NPM_INSTALL_FLAGS[@]}"
   else
-    npm install
+    npm install "${NPM_INSTALL_FLAGS[@]}"
   fi
 fi
 
-npm run build
+# Cap V8 heap so a runaway bundler fails with "JS heap out of memory"
+# instead of swap-thrashing the agent VM. Run turbo with concurrency=1
+# so workspaces build sequentially, halving peak working set.
+NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=2048" \
+  npm run build -- --concurrency=1

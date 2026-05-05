@@ -9,17 +9,22 @@ readonly SCRIPT_DIR
 # shellcheck source=.buildkite/ci/setup-env.sh
 source "${SCRIPT_DIR}/setup-env.sh"
 
+NPM_INSTALL_FLAGS=(--jobs=1 --no-audit --no-fund --prefer-offline)
 if [[ ! -d node_modules ]]; then
   if [[ -f package-lock.json ]]; then
-    npm ci
+    npm ci "${NPM_INSTALL_FLAGS[@]}"
   else
-    npm install
+    npm install "${NPM_INSTALL_FLAGS[@]}"
   fi
 fi
 
 # Tests require the build output (tests `require()` the compiled dist/).
 if [[ ! -d packages/plugin-dev-phone/dist ]] || [[ ! -d packages/dev-phone-ui/dist ]]; then
-  npm run build
+  NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=2048" \
+    npm run build -- --concurrency=1
 fi
 
-npm test --workspace=@twilio-labs/plugin-dev-phone
+# Cap V8 heap on the mocha runner too — coverage instrumentation can
+# push memory up unpredictably on agents with limited RAM.
+NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=2048" \
+  npm test --workspace=@twilio-labs/plugin-dev-phone
