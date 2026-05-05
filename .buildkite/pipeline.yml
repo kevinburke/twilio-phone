@@ -33,12 +33,15 @@ steps:
     artifact_paths:
       - "packages/plugin-dev-phone/coverage/**/*"
 
-  - label: ":mag: Audit"
-    key: "audit"
-    command: ".buildkite/ci/audit.sh"
-    depends_on: "install"
-    timeout_in_minutes: 20
-    soft_fail: true
-    agents:
-      vm: "buildkite"
-      host: "caracal"
+  # Disabled for now: npm audit is currently blocked by upstream advisories in
+  # Mocha, Paste, and @twilio-labs/serverless-api that do not have safe
+  # package-manager-only fixes.
+  # - label: ":mag: Audit"
+  #   key: "audit"
+  #   command: ".buildkite/ci/audit.sh"
+  #   depends_on: "install"
+  #   timeout_in_minutes: 20
+  #   soft_fail: true
+  #   agents:
+  #     vm: "buildkite"
+  #     host: "caracal"
