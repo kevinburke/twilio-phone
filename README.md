@@ -23,12 +23,15 @@ Once it's installed, you can run the Dev Phone with the following command:
 `twilio dev-phone`
 
 You can also run the local server without installing the Twilio CLI by building
-the repo and passing Twilio credentials directly:
+the repo and passing Twilio credentials through environment variables:
 
 ```
 npm ci
 npm run build
-npm run dev-phone -- --account-sid AC... --auth-token ... --headless
+mkdir -p env
+printf %s AC... > env/TWILIO_ACCOUNT_SID
+printf %s ... > env/TWILIO_AUTH_TOKEN
+envdir env npm run dev-phone -- --headless
 ```
 
 Check out the [Dev Phone documentation](https://www.twilio.com/docs/labs/dev-phone) to learn more about installing and using the Dev Phone.

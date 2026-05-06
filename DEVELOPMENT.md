@@ -24,10 +24,13 @@ You will need:
 ## Standalone Server
    1. Build the UI and backend:
      * `npm run build`
-   2. Start the server without the Twilio CLI:
-     * `npm run dev-phone -- --account-sid AC... --auth-token ... --headless`
-   3. Credentials can also come from `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN`.
-      API key auth is supported with `TWILIO_API_KEY` and `TWILIO_API_SECRET`,
+   2. Put credentials in an `env/` directory:
+     * `mkdir -p env`
+     * `printf %s AC... > env/TWILIO_ACCOUNT_SID`
+     * `printf %s ... > env/TWILIO_AUTH_TOKEN`
+   3. Start the server without the Twilio CLI:
+     * `envdir env npm run dev-phone -- --headless`
+   4. API key auth is supported with `TWILIO_API_KEY` and `TWILIO_API_SECRET`,
       or the matching `--api-key` and `--api-secret` flags.
 
 ## Dev Phone UI

@@ -16,11 +16,12 @@ type ParsedArgs = {
 const usage = () => `Dev Phone standalone server
 
 Usage:
+  envdir env npm run dev-phone -- --headless
   dev-phone --account-sid AC... --auth-token ... [options]
-  dev-phone --account-sid AC... --api-key SK... --api-secret ... [options]
 
-Credentials may also be provided with TWILIO_ACCOUNT_SID plus either
+Credentials are read from TWILIO_ACCOUNT_SID plus either
 TWILIO_AUTH_TOKEN or TWILIO_API_KEY and TWILIO_API_SECRET.
+The matching credential flags are also supported for explicit overrides.
 
 Options:
   --phone-number <value>  Associate the Dev Phone with this Twilio number.
