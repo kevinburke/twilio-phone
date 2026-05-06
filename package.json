@@ -5,7 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "npm run build --workspace=@twilio-labs/dev-phone-ui && npm run build --workspace=@twilio-labs/plugin-dev-phone"
+    "build": "npm run build --workspace=@twilio-labs/dev-phone-ui && npm run build --workspace=@twilio-labs/plugin-dev-phone",
+    "dev-phone": "npm run standalone --workspace=@twilio-labs/plugin-dev-phone --"
   },
   "repository": {
     "type": "git",

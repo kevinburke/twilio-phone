@@ -14,7 +14,8 @@
     "@twilio/cli-core": "8.3.3",
     "express": "^4.17.1",
     "get-port": "^5.1.1",
-    "open": "^8.4.0"
+    "open": "^8.4.0",
+    "twilio": "5.13.1"
   },
   "devDependencies": {
     "@twilio/cli-test": "3.0.0",
@@ -59,10 +60,14 @@
   "scripts": {
     "build": "tsc",
     "postpack": "rm -f oclif.manifest.json",
+    "standalone": "node dist/standalone.js",
     "XX-posttest": "eslint --ignore-path .gitignore . && npm audit",
     "prepack": "npx oclif manifest && npx oclif readme",
     "test": "nyc --reporter=html --reporter=text mocha --forbid-only \"test/**/*.test.js\"",
     "version": "npx oclif readme && git add README.md"
+  },
+  "bin": {
+    "dev-phone": "dist/standalone.js"
   },
   "directories": {
     "test": "test"

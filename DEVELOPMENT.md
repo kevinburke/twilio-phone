@@ -21,6 +21,15 @@ You will need:
      * Leave this running and continue in a new terminal.
    3. Make changes to the source code. When you're ready to test them, use `CTRL + C` to tear down the Dev Phone if it's still running, then rebuild the plugin with `npm run build --workspace=packages/plugin-dev-phone`
 
+## Standalone Server
+   1. Build the UI and backend:
+     * `npm run build`
+   2. Start the server without the Twilio CLI:
+     * `npm run dev-phone -- --account-sid AC... --auth-token ... --headless`
+   3. Credentials can also come from `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN`.
+      API key auth is supported with `TWILIO_API_KEY` and `TWILIO_API_SECRET`,
+      or the matching `--api-key` and `--api-secret` flags.
+
 ## Dev Phone UI
    1. Start the front end
      * `npm start --workspace=packages/dev-phone-ui`

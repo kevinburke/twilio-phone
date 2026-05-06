@@ -20,11 +20,19 @@ import { KeyInstance } from 'twilio/lib/rest/api/v2010/account/key'
 import { ApplicationInstance } from 'twilio/lib/rest/api/v2010/account/application'
 import { IncomingPhoneNumberInstance } from 'twilio/lib/rest/api/v2010/account/incomingPhoneNumber'
 
-const AccessToken = require('twilio').jwt.AccessToken;
+const Twilio = require('twilio');
+const AccessToken = Twilio.jwt.AccessToken;
 const ChatGrant = AccessToken.ChatGrant;
 const VoiceGrant = AccessToken.VoiceGrant;
 const SyncGrant = AccessToken.SyncGrant;
 const CALL_LOG_MAP_NAME = 'CallLog'
+
+type StandaloneCredentials = {
+    accountSid: string;
+    authToken?: string;
+    apiKey?: string;
+    apiSecret?: string;
+}
 
 // removes unecessary properties to standardize the twilio phone number
 const reformatTwilioPns = (twilioResponse: IncomingPhoneNumberInstance[]) => {
@@ -59,7 +67,36 @@ class DevPhoneServer extends TwilioClientCommand {
         await super.run();
 
         const props = this.parseProperties() || {};
-        await this.validatePropsAndFlags(props, this.flags)
+        await this.runDevPhone(this.flags, props)
+    }
+
+    static async runStandalone(flags: any, credentials: StandaloneCredentials) {
+        const server = new DevPhoneServer([], { configDir: process.cwd() }, undefined);
+        const username = credentials.apiKey || credentials.accountSid;
+        const password = credentials.apiSecret || credentials.authToken;
+
+        if (!password) {
+            throw new TwilioCliError('Provide either --auth-token or both --api-key and --api-secret');
+        }
+
+        (server as any).flags = flags;
+        (server as any).currentProfile = {
+            id: 'standalone',
+            accountSid: credentials.accountSid,
+            apiKey: username,
+            apiSecret: password,
+        };
+        (server as any).twilio = Twilio(username, password, {
+            accountSid: credentials.accountSid,
+        });
+
+        await server.runDevPhone(flags, {});
+    }
+
+    async runDevPhone(flags: any, props: any) {
+        this.flags = flags;
+
+        await this.validatePropsAndFlags(props, flags)
 
         console.log(`Hello 👋 I'm your dev-phone and my name is ${this.devPhoneName}\n`)
 
@@ -332,8 +369,8 @@ class DevPhoneServer extends TwilioClientCommand {
 
         this.cliSettings.forceMode = flags['force'];
         this.port = process.env.TWILIO_DEV_PHONE_PORT || await getAvailablePort();
-        if (flags['phone-number']) {
-            const phoneNumber = await flags['phone-number']
+        const phoneNumber = flags['phone-number'] || flags.phoneNumber || props.phoneNumber;
+        if (phoneNumber) {
             this.pns = await this.twilioClient.incomingPhoneNumbers
                 .list({ phoneNumber: phoneNumber });
 
