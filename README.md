@@ -34,6 +34,9 @@ printf %s ... > env/TWILIO_AUTH_TOKEN
 envdir env npm run dev-phone -- --headless
 ```
 
+The standalone server listens on port `2335` by default. To override it, put a
+`TWILIO_DEV_PHONE_PORT` file in `env/` or pass `--port`.
+
 Check out the [Dev Phone documentation](https://www.twilio.com/docs/labs/dev-phone) to learn more about installing and using the Dev Phone.
 
 ## Contribute to this plugin

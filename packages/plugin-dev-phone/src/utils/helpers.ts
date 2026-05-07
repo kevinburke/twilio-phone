@@ -6,6 +6,6 @@ export function isValidPort (port:string) {
 }
 
 export async function getAvailablePort() {
-    const availablePort = await getPort({port: [1337, 3000, 3001, 8000, 8080]})
+    const availablePort = await getPort({port: [2335, 1337, 3000, 3001, 8000, 8080]})
     return availablePort
 }

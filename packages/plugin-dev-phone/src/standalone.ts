@@ -22,13 +22,14 @@ Usage:
 Credentials are read from TWILIO_ACCOUNT_SID plus either
 TWILIO_AUTH_TOKEN or TWILIO_API_KEY and TWILIO_API_SECRET.
 The matching credential flags are also supported for explicit overrides.
+The server listens on port 2335 by default. Set TWILIO_DEV_PHONE_PORT to override it.
 
 Options:
   --phone-number <value>  Associate the Dev Phone with this Twilio number.
   --force                 Overwrite existing phone-number webhook config.
   --headless              Print the local UI URL instead of opening a browser.
   --clear                 Remove existing dev-phone resources before starting.
-  --port <value>          Local server port.
+  --port <value>          Local server port. Overrides TWILIO_DEV_PHONE_PORT.
   --version               Print the package version.
   --help                  Print this help text.
 `;

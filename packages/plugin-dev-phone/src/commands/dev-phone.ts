@@ -53,7 +53,7 @@ class DevPhoneServer extends TwilioClientCommand {
         super(argv, config, secureStorage);
         this.cliSettings = {};
         this.pns = [];
-        this.port = 1337
+        this.port = 2335
         this.jwt = null;
         this.apikey = {};
         this.twimlApp = {};
@@ -368,7 +368,10 @@ class DevPhoneServer extends TwilioClientCommand {
         // https://github.com/twilio/plugin-debugger/blob/main/src/commands/debugger/logs/list.js#L46-L56
 
         this.cliSettings.forceMode = flags['force'];
-        this.port = process.env.TWILIO_DEV_PHONE_PORT || await getAvailablePort();
+        this.port = await getAvailablePort();
+        if (process.env.TWILIO_DEV_PHONE_PORT) {
+            this.port = this.parsePort(process.env.TWILIO_DEV_PHONE_PORT, 'TWILIO_DEV_PHONE_PORT')
+        }
         const phoneNumber = flags['phone-number'] || flags.phoneNumber || props.phoneNumber;
         if (phoneNumber) {
             this.pns = await this.twilioClient.incomingPhoneNumbers
@@ -397,18 +400,16 @@ class DevPhoneServer extends TwilioClientCommand {
 
         if(flags['port']) {
             const port = await flags['port']
-            try {
-                if(isValidPort(port)){
-                    this.port = parseInt(port)
-                } else {
-                    throw new TwilioCliError(
-                        `❗️ '${port}' is not a valid port. 😳 I'll try to get set up with ${this.port} instead.`,
-                        )
-                }
-            } catch (err:any) {
-                console.error(err.message)
-            }
+            this.port = this.parsePort(port, '--port')
         }
+    }
+
+    parsePort(port: string, source: string) {
+        if (isValidPort(port)) {
+            return parseInt(port)
+        }
+
+        throw new TwilioCliError(`${source} must be a valid TCP port, got '${port}'`)
     }
 
     twilioCliIsConfiguredWithApiKey() {

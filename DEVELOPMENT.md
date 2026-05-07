@@ -32,6 +32,8 @@ You will need:
      * `envdir env npm run dev-phone -- --headless`
    4. API key auth is supported with `TWILIO_API_KEY` and `TWILIO_API_SECRET`,
       or the matching `--api-key` and `--api-secret` flags.
+   5. The server listens on port `2335` by default. Override it with
+      `TWILIO_DEV_PHONE_PORT` in `env/` or with `--port`.
 
 ## Dev Phone UI
    1. Start the front end
