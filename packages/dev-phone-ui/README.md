@@ -1,6 +1,6 @@
 # dev-phone-ui
 
-A UI layer for the Twilio Dev Phone.
+A browser phone UI for calling and messaging with Twilio.
 
 ![A mock-up of the Dev Phone UI](https://user-images.githubusercontent.com/8594375/162187067-33f8e50e-64f9-4bd0-8cdb-ac10b2ff9b63.png)
 

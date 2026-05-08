@@ -1,14 +1,14 @@
-# dev-phone
+# Dev Phone
 
-A developer tool for testing SMS and Voice applications.
+A browser phone for calling and messaging with Twilio.
 
 ![A mock up of the dev phone UI](https://user-images.githubusercontent.com/8594375/167843260-ea78e367-8533-48e8-a90e-b287eb0ad588.gif)
 
 
 This is a monorepo that contains two Dev Phone packages:
 
-* the Dev Phone plugin, which uses the Twilio CLI to deploy Twilio account resources and launch a local development server to host the Dev Phone UI
-* The Dev Phone UI, the user interface for the Dev Phone. It is a react app that is tightly coupled with the CLI plugin
+* the Dev Phone server, which configures Twilio account resources and hosts the browser phone UI
+* the Dev Phone UI, a React app for browser calling and messaging
 
 ## Use the Dev Phone
 
@@ -22,7 +22,7 @@ Once it's installed, you can run the Dev Phone with the following command:
 
 `twilio dev-phone`
 
-You can also run the local server without installing the Twilio CLI by building
+You can run the local server without installing the Twilio CLI by building
 the repo and passing Twilio credentials through environment variables:
 
 ```

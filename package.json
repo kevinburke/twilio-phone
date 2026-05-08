@@ -1,7 +1,7 @@
 {
   "name": "@twilio-labs/dev-phone-services",
   "version": "1.0.0-beta.1",
-  "description": "A monorepo for the various components of the Twilio Dev Phone",
+  "description": "A browser phone for calling and messaging with Twilio",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -14,8 +14,8 @@
   },
   "keywords": [
     "softphone",
-    "dev",
     "phone",
+    "browser-phone",
     "twilio"
   ],
   "author": "Twilio @twilio",

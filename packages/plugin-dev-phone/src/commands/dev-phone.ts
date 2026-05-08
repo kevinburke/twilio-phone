@@ -280,8 +280,8 @@ class DevPhoneServer extends TwilioClientCommand {
                 }
 
             } else {
-                console.log('Hello friend! Front end files are missing, ie you are developing this pluign.');
-                console.log('Run: `cd plugin-dev-phone-client` then `npm start` to run dev front-end')
+                console.log('Front end files are missing.');
+                console.log('Run: `npm start --workspace=packages/dev-phone-ui` to start the UI separately.')
                 console.log('To build the front-end so that the local backend will serve it: ./build-for-release.sh')
             }
 
@@ -739,7 +739,7 @@ class DevPhoneServer extends TwilioClientCommand {
     }
 }
 
-DevPhoneServer.description = `Dev Phone local express server`
+DevPhoneServer.description = `Dev Phone browser calling server`
 
 // Example of how to define flags and properties:
 // https://github.com/twilio/plugin-debugger/blob/main/src/commands/debugger/logs/list.js#L99-L126
