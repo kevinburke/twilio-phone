@@ -5,6 +5,7 @@ import { changeNumberInUse, configureNumberInUse } from "../../actions";
 import Header from "../Header/Header"
 import PhoneNumberPicker from "../PhoneNumberPicker/PhoneNumberPicker";
 import Softphone from "../Softphone/Softphone"
+import SmsMessagesPage from "../SmsMessagesPage/SmsMessagesPage";
 
 import { Box } from "@twilio-paste/box";
 import { Flex } from "@twilio-paste/flex";
@@ -23,6 +24,7 @@ function App() {
   const channelData = useSelector(state => state.channelData)
   const numberInUse = useSelector(state => state.numberInUse ? state.numberInUse.phoneNumber : "")
   const dispatch = useDispatch()
+  const pathname = window.location.pathname;
 
   const [ninetiesMode, setNinetiesMode] = useState(false);
 
@@ -36,7 +38,9 @@ function App() {
   return (
     <Box width={"100vw"} minHeight={"100vh"} backgroundColor={"colorBackground"}>
       <Header devPhoneName={channelData.devPhoneName} numberInUse={numberInUse} />
-      {numberInUse ? (
+      {pathname === "/sms-messages" ? (
+        <SmsMessagesPage />
+      ) : numberInUse ? (
         <Softphone numberInUse={numberInUse} />
       ) : (
         <Grid gutter="space30">

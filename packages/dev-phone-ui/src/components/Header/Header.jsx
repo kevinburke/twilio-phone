@@ -29,6 +29,10 @@ function Header({ devPhoneName, numberInUse }) {
                             <Text as="h3" fontSize="fontSize20" lineHeight="lineHeight20" color="colorTextWeak">
                                 Twilio Labs Project
                             </Text>
+                            <Flex columnGap="space40">
+                                <Text href="/" as="a" color="colorTextInverse" fontSize="fontSize20">Phone</Text>
+                                <Text href="/sms-messages" as="a" color="colorTextInverse" fontSize="fontSize20">SMS Messages</Text>
+                            </Flex>
                         </MediaBody>
                     </MediaObject>
                 </Column>

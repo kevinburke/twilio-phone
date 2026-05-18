@@ -313,6 +313,10 @@ class DevPhoneServer extends TwilioClientCommand {
             }
         })
 
+        app.get("/sms-messages", (req, res) => {
+            res.sendFile(path.join(WebClientPath, 'index.html'));
+        })
+
         const isHeadless = () => !!this.flags.headless;
 
         app.listen(this.port, () => {
