@@ -26,7 +26,8 @@ The server listens on port 2335 by default. Set TWILIO_DEV_PHONE_PORT to overrid
 
 Options:
   --phone-number <value>  Associate the Dev Phone with this Twilio number.
-  --force                 Overwrite existing phone-number webhook config.
+  --inbound-calling       Route inbound calls to this browser phone.
+  --force                 Overwrite existing phone-number voice webhook config.
   --headless              Print the local UI URL instead of opening a browser.
   --clear                 Remove existing dev-phone resources before starting.
   --port <value>          Local server port. Overrides TWILIO_DEV_PHONE_PORT.
@@ -47,6 +48,7 @@ function parseArgs(argv: string[]): ParsedArgs {
         headless: false,
         clear: false,
         force: false,
+        'inbound-calling': false,
     };
     const credentials = {
         accountSid: process.env.TWILIO_ACCOUNT_SID || '',
@@ -85,6 +87,9 @@ function parseArgs(argv: string[]): ParsedArgs {
             case '--force':
             case '-f':
                 flags.force = true;
+                break;
+            case '--inbound-calling':
+                flags['inbound-calling'] = true;
                 break;
             case '--headless':
                 flags.headless = true;

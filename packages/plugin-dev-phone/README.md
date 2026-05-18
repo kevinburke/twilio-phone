@@ -29,16 +29,18 @@ Dev Phone browser calling server
 ```
 USAGE
   $ twilio dev-phone [-l (debug|info|warn|error|none)] [-o (columns|json|tsv|none)] [--silent] [-p <value>] [-f
-    --phone-number <value>] [--headless] [--clear] [--port <value>]
+    --phone-number <value>] [--inbound-calling] [--headless] [--clear] [--port <value>]
 
 FLAGS
-  -f, --force                      Optional. Forces an overwrite of the phone number configuration.
+  -f, --force                      Optional. Forces an overwrite of the phone number voice configuration.
   -l=(debug|info|warn|error|none)  [default: info] Level of logging messages.
   -o=(columns|json|tsv|none)       [default: columns] Format of command output.
   -p, --profile=<value>            Shorthand identifier for your profile.
       --clear                      Optional. Remove all dev-phone resources from your account before starting the
                                    dev-phone.
       --headless                   Optional. Prevents the UI from automatically opening in the browser.
+      --inbound-calling            Optional. Routes inbound calls for the selected Twilio number to this browser phone by
+                                   updating the number voice webhook.
       --phone-number=<value>       Optional. Associates the Dev Phone with a phone number. Takes a number from the
                                    active profile on the Twilio CLI as the parameter.
       --port=<value>               Optional. Configures the port of the Dev Phone UI. Takes a valid port as a parameter.

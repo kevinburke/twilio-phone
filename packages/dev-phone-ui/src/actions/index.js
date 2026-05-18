@@ -9,12 +9,20 @@ export function setDestinationNumber(number) {
 
 // Actions for handling history logic in the UI
 export const ADD_MESSAGE = "ADD_MESSAGE"
+export const SET_MESSAGES = "SET_MESSAGES"
 export const ADD_CALL_RECORD = "ADD_CALL_RECORD"
 export const UPDATE_CALL_RECORD = "UPDATE_CALL_RECORD"
 
 export function addMessage(payload) {
     return {
         type: ADD_MESSAGE,
+        payload
+    }
+}
+
+export function setMessages(payload) {
+    return {
+        type: SET_MESSAGES,
         payload
     }
 }

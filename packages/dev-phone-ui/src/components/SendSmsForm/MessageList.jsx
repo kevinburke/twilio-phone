@@ -22,11 +22,11 @@ function MessageList({ devPhoneName }) {
                         messageList.map((message, i) => {
                             const isFromDevPhone = message.author === devPhoneName;
                             return (
-                                <ChatMessage variant={!isFromDevPhone ? "outbound" : "inbound"}>
+                                <ChatMessage key={message.sid || i} variant={isFromDevPhone ? "outbound" : "inbound"}>
                                     <ChatBubble>
                                         {message.body}
                                     </ChatBubble>
-                                    <ChatMessageMeta aria-label={!isFromDevPhone ? "said by outbound user" : "said by dev phone"}>
+                                    <ChatMessageMeta aria-label={isFromDevPhone ? "said by dev phone" : "said by inbound user"}>
                                         <ChatMessageMetaItem>
                                             <Avatar size="sizeIcon30" name={message.author} icon={UserIcon} />
                                             {message.author}

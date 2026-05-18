@@ -6,7 +6,7 @@ import { Input } from "@twilio-paste/input";
 import { Label } from "@twilio-paste/label";
 import { SendIcon } from '@twilio-paste/icons/esm/SendIcon';
 import { useSelector } from "react-redux";
-import { TwilioConversationsContext } from '../WebsocketManagers/ConversationsManager';
+import { TwilioMessagesContext } from '../WebsocketManagers/MessagesManager';
 import MessageList from "./MessageList"
 
 function SendSmsForm({ numberInUse }) {
@@ -15,8 +15,8 @@ function SendSmsForm({ numberInUse }) {
   const channelData = useSelector(state => state.channelData)
   const destinationNumber = useSelector(state => state.destinationNumber)
 
-  const conversationsClient = useContext(TwilioConversationsContext)
-  const {sendMessage, sendSms} = conversationsClient
+  const messagesClient = useContext(TwilioMessagesContext)
+  const {sendSms} = messagesClient
 
   const canSendMessages = useMemo(() => {
     return destinationNumber && destinationNumber.length > 6;
@@ -26,11 +26,10 @@ function SendSmsForm({ numberInUse }) {
   const sendIt = async (e) => {
     e.preventDefault()
     if (canSendMessages) {
-      sendSms(numberInUse, destinationNumber, messageBody);
-      await sendMessage(messageBody)
+      await sendSms(numberInUse, destinationNumber, messageBody);
       setMessageBody('')
     } else {
-      setShowWarning(true)
+      console.error("Not sending as destination number is missing");
     }
   };
 

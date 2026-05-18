@@ -34,6 +34,12 @@ printf %s ... > env/TWILIO_AUTH_TOKEN
 envdir env npm run dev-phone -- --headless
 ```
 
+By default, the Dev Phone does not change the selected Twilio number's webhooks.
+Outbound calls use a TwiML App, outbound SMS uses the Messages API, and inbound
+SMS is read from the Messages API. To route inbound calls to the browser phone,
+start the server with `--inbound-calling`; this updates the selected number's
+Voice webhook only.
+
 The standalone server listens on port `2335` by default. To override it, put a
 `TWILIO_DEV_PHONE_PORT` file in `env/` or pass `--port`.
 

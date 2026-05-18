@@ -5,8 +5,7 @@ import path from 'path';
 export const constants = {
     SYNC_CALL_HISTORY: 'sync-call-history',
     INCOMING_CALL_HANDLER: 'incoming-call-handler',
-    OUTBOUND_CALL_HANDLER: 'outbound-call-handler',
-    INCOMING_MESSAGE_HANDLER: 'incoming-message-handler'
+    OUTBOUND_CALL_HANDLER: 'outbound-call-handler'
 }
 
 interface deployEvent {status: string, message: string}
@@ -16,8 +15,6 @@ interface devPhoneServerlessConfig {
     password: string,
     env: {
         SYNC_SERVICE_SID: string,
-        CONVERSATION_SID: string,
-        CONVERSATION_SERVICE_SID: string,
         DEV_PHONE_NAME: string,
         CALL_LOG_MAP_NAME: string,
         DEV_PHONE_VERSION: string
@@ -49,12 +46,6 @@ export async function deployServerless(context: devPhoneServerlessConfig) {
                 name: 'Incoming Call Handler',
                 path: `/${constants.INCOMING_CALL_HANDLER}`,
                 content: fs.readFileSync(path.join(__dirname, `../serverless/functions/${constants.INCOMING_CALL_HANDLER}.js`)),
-                access: 'protected',
-            },
-            {
-                name: 'Incoming Message Handler',
-                path: `/${constants.INCOMING_MESSAGE_HANDLER}`,
-                content: fs.readFileSync(path.join(__dirname,`../serverless/functions/${constants.INCOMING_MESSAGE_HANDLER}.js`)),
                 access: 'protected',
             },
             {

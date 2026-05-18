@@ -34,6 +34,9 @@ You will need:
       or the matching `--api-key` and `--api-secret` flags.
    5. The server listens on port `2335` by default. Override it with
       `TWILIO_DEV_PHONE_PORT` in `env/` or with `--port`.
+   6. The default mode does not update phone-number webhooks. Add
+      `--inbound-calling` to route inbound calls to the browser phone; SMS is
+      sent and read through the Messages API.
 
 ## Dev Phone UI
    1. Start the front end

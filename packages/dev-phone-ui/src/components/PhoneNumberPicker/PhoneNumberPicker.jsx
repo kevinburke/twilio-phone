@@ -12,11 +12,8 @@ import { Option, Select } from "@twilio-paste/select";
 import { SkeletonLoader } from "@twilio-paste/skeleton-loader";
 import { Stack } from "@twilio-paste/stack";
 import { Text } from "@twilio-paste/text";
+import { useSelector } from "react-redux";
 import WelcomeDialog from "./WelcomeDialog";
-
-const hasExistingSmsConfig = (pn) => {
-  return pn.smsUrl && pn.smsUrl !== "https://demo.twilio.com/welcome/sms/reply";
-};
 
 const hasExistingVoiceConfig = (pn) => {
   return (
@@ -24,12 +21,8 @@ const hasExistingVoiceConfig = (pn) => {
   );
 };
 
-const hasExistingConfig = (pn) => {
-  return hasExistingSmsConfig(pn) || hasExistingVoiceConfig(pn);
-};
-
-const getSelectLabelForPn = (pn) => {
-  const warning = hasExistingConfig(pn) ? "⚠️ " : "";
+const getSelectLabelForPn = (pn, inboundCalling) => {
+  const warning = inboundCalling && hasExistingVoiceConfig(pn) ? "⚠️ " : "";
   return `${warning}${pn.phoneNumber} [${pn.friendlyName}]`;
 };
 
@@ -38,8 +31,8 @@ const getPnDetailsByNumber = (pn, allPns) => {
 };
 
 const sortUnconfiguredNumbersFirstThenAlphabetically = (pn1, pn2) => {
-  if (hasExistingConfig(pn1) && !hasExistingConfig(pn2)) return 1;
-  if (hasExistingConfig(pn2) && !hasExistingConfig(pn1)) return -1;
+  if (hasExistingVoiceConfig(pn1) && !hasExistingVoiceConfig(pn2)) return 1;
+  if (hasExistingVoiceConfig(pn2) && !hasExistingVoiceConfig(pn1)) return -1;
   return pn1.phoneNumber.localeCompare(pn2.phoneNumber);
 };
 
@@ -85,6 +78,7 @@ function PhoneNumberPickerContainer({ children }) {
 function PhoneNumberPicker({ configureNumberInUse, phoneNumbers }) {
   const [twilioPns, setTwilioPns] = useState(null);
   const [selectedPn, setSelectedPn] = useState(null);
+  const inboundCalling = useSelector(state => !!state.channelData.inboundCalling);
 
   useEffect(() => {
     numPicker(selectedPn, setSelectedPn, setTwilioPns);
@@ -116,7 +110,7 @@ function PhoneNumberPicker({ configureNumberInUse, phoneNumbers }) {
           <Heading as="h2" variant="heading20">Select a phone number</Heading>
           <Paragraph>
             Pick one of the phone numbers from your Twilio account to configure your Dev Phone. This phone number will be the one to send messages and make calls.
-            Any calls and text messages sent to this number will show up in the Dev Phone.
+            SMS messages sent to this number will show up in the Dev Phone. Inbound calls require starting the server with inbound calling enabled.
           </Paragraph>
           <Label htmlFor="devPhonePn" required>
             Phone number
@@ -129,7 +123,7 @@ function PhoneNumberPicker({ configureNumberInUse, phoneNumbers }) {
           >
             {twilioPns.map((pn) => (
               <Option key={pn.phoneNumber} value={pn.phoneNumber}>
-                {getSelectLabelForPn(pn)}
+                {getSelectLabelForPn(pn, inboundCalling)}
               </Option>
             ))}
           </Select>
@@ -137,21 +131,12 @@ function PhoneNumberPicker({ configureNumberInUse, phoneNumbers }) {
 
         {selectedPn ? (
           <Stack orientation="vertical" spacing="space60">
-            {hasExistingConfig(selectedPn) ? (
+            {inboundCalling && hasExistingVoiceConfig(selectedPn) ? (
               <Stack orientation="vertical" spacing="space30">
                 <Alert variant="warning">
-                  This phone number has existing config which will be overwritten
+                  Inbound calling is enabled. This phone number has existing voice config which will be overwritten.
                 </Alert>
-                {hasExistingSmsConfig(selectedPn) ? (
-                  <Text >Configured SMS URL: <em>{selectedPn.smsUrl}</em></Text>
-                ) : (
-                  ""
-                )}
-                {hasExistingVoiceConfig(selectedPn) ? (
-                  <Text>Configured Voice URL: <em>{selectedPn.voiceUrl}</em></Text>
-                ) : (
-                  ""
-                )}
+                <Text>Configured Voice URL: <em>{selectedPn.voiceUrl}</em></Text>
               </Stack>
             ) : (
               ""

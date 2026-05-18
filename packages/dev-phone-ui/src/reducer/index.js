@@ -4,6 +4,7 @@ import {
     REQUEST_CHANNEL_DATA_SUCCESS,
     REQUEST_CHANNEL_DATA_ERROR,
     ADD_MESSAGE,
+    SET_MESSAGES,
     DEV_PHONE_CONFIG_ERROR,
     CONFIGURE_NUMBER_IN_USE,
     ADD_CALL_RECORD,
@@ -33,6 +34,8 @@ export default function reducer(state = initialState, action) {
         case ADD_MESSAGE:
             const duplicateMessage = state.messageList.findIndex(message => message.sid === action.payload.sid)
             return duplicateMessage > -1 ? state : { ...state, messageList: [...state.messageList, action.payload] }
+        case SET_MESSAGES:
+            return { ...state, messageList: action.payload }
         case ADD_CALL_RECORD:
             const duplicateCall = state.callLog.findIndex(call => call.Sid === action.payload.Sid)
             return duplicateCall > -1 ? state : { ...state, callLog: [...state.callLog, action.payload] }
