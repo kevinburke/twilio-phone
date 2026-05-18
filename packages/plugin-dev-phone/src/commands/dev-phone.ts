@@ -239,7 +239,7 @@ class DevPhoneServer extends TwilioClientCommand {
             };
         })
 
-        app.get("/messages", async (req: express.Request, res: express.Response) => {
+        app.get("/api/messages", async (req: express.Request, res: express.Response) => {
             const phoneNumber = req.query.phoneNumber as string || this.cliSettings.phoneNumber?.phoneNumber;
             const otherNumber = req.query.otherNumber as string;
             const limit = req.query.limit ? parseInt(req.query.limit as string) : 50;
@@ -313,7 +313,7 @@ class DevPhoneServer extends TwilioClientCommand {
             }
         })
 
-        app.get("/sms-messages", (req, res) => {
+        app.get("/messages", (req, res) => {
             res.sendFile(path.join(WebClientPath, 'index.html'));
         })
 

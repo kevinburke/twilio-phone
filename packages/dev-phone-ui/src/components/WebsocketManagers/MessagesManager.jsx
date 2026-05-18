@@ -21,7 +21,7 @@ const TwilioMessagesManager = ({ children }) => {
             params.set('otherNumber', destinationNumber);
         }
 
-        const response = await fetch(`/messages?${params.toString()}`);
+        const response = await fetch(`/api/messages?${params.toString()}`);
         const data = await response.json();
         dispatch(setMessages(data.messages || []));
     }, [destinationNumber, dispatch, numberInUse]);

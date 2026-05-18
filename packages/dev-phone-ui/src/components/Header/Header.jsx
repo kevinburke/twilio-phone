@@ -31,7 +31,7 @@ function Header({ devPhoneName, numberInUse }) {
                             </Text>
                             <Flex columnGap="space40">
                                 <Text href="/" as="a" color="colorTextInverse" fontSize="fontSize20">Phone</Text>
-                                <Text href="/sms-messages" as="a" color="colorTextInverse" fontSize="fontSize20">SMS Messages</Text>
+                                <Text href="/messages" as="a" color="colorTextInverse" fontSize="fontSize20">SMS Messages</Text>
                             </Flex>
                         </MediaBody>
                     </MediaObject>

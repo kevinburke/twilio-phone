@@ -58,7 +58,7 @@ function SmsMessagesPage() {
       phoneNumber: numberInUse,
       limit: "100",
     });
-    const response = await fetch(`/messages?${params.toString()}`);
+    const response = await fetch(`/api/messages?${params.toString()}`);
     const data = await response.json();
 
     if (!response.ok) {

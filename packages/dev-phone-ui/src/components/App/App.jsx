@@ -38,7 +38,7 @@ function App() {
   return (
     <Box width={"100vw"} minHeight={"100vh"} backgroundColor={"colorBackground"}>
       <Header devPhoneName={channelData.devPhoneName} numberInUse={numberInUse} />
-      {pathname === "/sms-messages" ? (
+      {pathname === "/messages" ? (
         <SmsMessagesPage />
       ) : numberInUse ? (
         <Softphone numberInUse={numberInUse} />
